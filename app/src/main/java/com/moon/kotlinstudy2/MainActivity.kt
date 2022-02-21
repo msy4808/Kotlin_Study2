@@ -35,5 +35,58 @@ class MainActivity : AppCompatActivity() {
                 else -> btn.text = "실행"
             }
         }
+
+        //코틀린에서 for문 사용법
+
+        val collection = mutableListOf<String>("처음", "두번째", "세번째")
+        for(item in collection){ //코틀린에서 for문 사용법(컬렉션(list) 혹은 배열에 대한 for문)
+            println(item)
+        }
+
+        for((index, value) in collection.withIndex()){ //list의 인덱스값이 필요한 경우 사용법 withIndex()를 통해 접근가능
+            println("${index} 번째 데이터는 ${value}입니다")
+        }
+
+        for (i in 10..15){ //코틀린에서 for문 사용법. 코틀린은 .. 을 통해 범위를 표현 할 수 있음
+            println(i)
+        }
+
+        //코틀린에서 while문 사용법
+
+        var x = 30
+
+        while(x < 34){ //JAVA와 거의 차이 X
+            if(x == 30) continue //continue 키워드도 JAVA와 동일하게 사용가능(30일 경우 건너뛰어 30이 출력X)
+            println(x)
+            x++
+        }
+
+        do { //JAVA에서 do블럭 내에 변수는 while문에서 접근이 안되지만 코틀린은 do안에서 선언된 변수도 while문에서 접근 가능
+            var y = 50
+            println(y)
+            y++
+        }while(y  < 50)
+
+        //레이블이란 JAVA에선 반복문을 빠져나가는데 break문을 쓰는데 중첩 반복문처럼 여러개가 중첩된 상황에선 코드흐름을 따라가기가 힘듬. 그래서 코틀린에선 레이블이란 기능을 지원함
+        //지정할 레이블 이름 뒤에 @를 붙여 레이블을 선언
+
+        loop@ while(true){ //레이블 지정
+            var i = 0
+
+            if(i == 1){
+                break@loop //break문 뒤에 레이블 이름을 붙여서 해당하는 레이블(반복문)을 지정해서 빠져나감
+            }else{
+                ++i
+            }
+        }
+
+        loop1@ while(true){
+            for(i in 1.. 100){
+                for(i in 2..100){
+                    break@loop1 //여러개가 중첩된 상황에서도 레이블을 통해 모든 반복문을 한번에 탈출 가능
+                }
+            }
+        }
+
     }
 }
